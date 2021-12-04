@@ -1,0 +1,39 @@
+import time
+import random
+
+
+def generator():
+    sequences_dictionary = {
+        1: [],
+        100: [],
+        1000: [],
+        10 ** 6: [],
+    }
+    for sequence_len in sequences_dictionary:
+        for counter in range(sequence_len):
+            sequences_dictionary[sequence_len].append(random.randint(1, 2147483647))
+        list.sort(sequences_dictionary[sequence_len])
+    return sequences_dictionary
+
+
+def finder(num, sequences_dictionary):
+    for sequence_len in sequences_dictionary:
+        start = time.time()
+        number_in_sequence = False
+        middle = sequence_len // 2
+        while middle > 0:
+            if sequences_dictionary[sequence_len][middle] == num:
+                number_in_sequence = True
+                print(middle)
+                print(time.time() - start)
+            elif sequences_dictionary[sequence_len][middle] < num:
+                middle = middle // 2 + middle
+            else:
+                middle = middle // 2
+        if not number_in_sequence:
+            print('Number isn\'t in sequence')
+            print(time.time() - start)
+
+
+sequences = generator()
+finder(404, sequences)
