@@ -1,0 +1,38 @@
+import random
+import time
+
+
+def generator():
+    sequences_dictionary = {
+        1: [],
+        100: [],
+        1000: [],
+        10 ** 6: [],
+    }
+    for sequence_len in sequences_dictionary:
+        for counter in range(sequence_len):
+            sequences_dictionary[sequence_len].append(random.randint(1, 2147483647))
+        list.sort(sequences_dictionary[sequence_len])
+    return sequences_dictionary
+
+
+def rec(num, seq):
+    start = time.time()
+    lowest = 0
+    highest = len(seq)
+    middle = (lowest + highest) // 2
+    if len(seq) == 0:
+        print(time.time() - start)
+        return None
+    elif seq[middle] == num:
+        print(time.time() - start)
+        return middle + 1
+    elif seq[middle] < num:
+        return rec(num, seq[middle + 1:highest])
+    else:
+        return rec(num, seq[lowest:middle])
+
+
+sequences = generator()
+for sequence in sequences.values():
+    print(rec(2147483646 / 2, sequence))
