@@ -1,0 +1,17 @@
+def square_root(n, num):
+    sequence = range(num)
+    lowest = 0
+    highest = len(sequence)
+    index = None
+    while lowest <= highest and index is None:
+        middle = (lowest + highest) // 2
+        if sequence[middle] ** n == num:
+            index = sequence[middle]
+        elif sequence[middle] ** n > num:
+            highest = middle - 1
+        else:
+            lowest = middle + 1
+    return index
+
+
+print(square_root(3, 8))
