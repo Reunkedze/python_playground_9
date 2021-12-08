@@ -1,4 +1,8 @@
+import time
+
+
 def square_root(n, num):
+    start = time.time()
     sequence = range(num)
     lowest = 0
     highest = len(sequence)
@@ -11,6 +15,7 @@ def square_root(n, num):
             highest = middle - 1
         else:
             lowest = middle + 1
+    print(time.time() - start)
     return index
 
 
